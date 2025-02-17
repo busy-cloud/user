@@ -49,6 +49,7 @@ func auth(ctx *gin.Context) {
 	//生成Token
 	token, err := web.JwtGenerate(user.Id, false)
 	if err != nil {
+		curd.Error(ctx, err)
 		return
 	}
 
