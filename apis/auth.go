@@ -54,6 +54,6 @@ func auth(ctx *gin.Context) {
 	}
 
 	curd.OK(ctx, gin.H{
-		token: token,
+		"token": token,
 	})
 }
