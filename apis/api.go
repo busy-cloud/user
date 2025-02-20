@@ -12,7 +12,7 @@ import (
 // @Description 这里写描述 get users
 // @Tags user
 // @Produce json
-// @Success 200 {object} curd.ReplyData[types.User] 返回用户信息
+// @Success 200 {object} curd.ReplyData[User] 返回用户信息
 // @Router /user/me [get]
 func noopUserMe() {}
 
@@ -34,7 +34,7 @@ func noopUserCount() {}
 // @Param search body curd.ParamSearch true "查询参数"
 // @Accept json
 // @Produce json
-// @Success 200 {object} curd.ReplyList[types.User] 返回用户信息
+// @Success 200 {object} curd.ReplyList[User] 返回用户信息
 // @Router /user/search [post]
 func noopUserSearch() {}
 
@@ -45,7 +45,7 @@ func noopUserSearch() {}
 // @Param search query curd.ParamList true "查询参数"
 // @Accept json
 // @Produce json
-// @Success 200 {object} curd.ReplyList[types.User] 返回用户信息
+// @Success 200 {object} curd.ReplyList[User] 返回用户信息
 // @Router /user/list [get]
 func noopUserList() {}
 
@@ -53,10 +53,10 @@ func noopUserList() {}
 // @Schemes
 // @Description 创建用户
 // @Tags user
-// @Param search body types.User true "用户信息"
+// @Param search body User true "用户信息"
 // @Accept json
 // @Produce json
-// @Success 200 {object} curd.ReplyData[types.User] 返回用户信息
+// @Success 200 {object} curd.ReplyData[User] 返回用户信息
 // @Router /user/create [post]
 func noopUserCreate() {}
 
@@ -65,10 +65,10 @@ func noopUserCreate() {}
 // @Description 修改用户
 // @Tags user
 // @Param id path string true "用户ID"
-// @Param user body types.User true "用户信息"
+// @Param user body User true "用户信息"
 // @Accept json
 // @Produce json
-// @Success 200 {object} curd.ReplyData[types.User] 返回用户信息
+// @Success 200 {object} curd.ReplyData[User] 返回用户信息
 // @Router /user/{id} [post]
 func noopUserUpdate() {}
 
@@ -79,7 +79,7 @@ func noopUserUpdate() {}
 // @Param id path string true "用户ID"
 // @Accept json
 // @Produce json
-// @Success 200 {object} curd.ReplyData[types.User] 返回用户信息
+// @Success 200 {object} curd.ReplyData[User] 返回用户信息
 // @Router /user/{id} [get]
 func noopUserGet() {}
 
@@ -90,7 +90,7 @@ func noopUserGet() {}
 // @Param id path string true "用户ID"
 // @Accept json
 // @Produce json
-// @Success 200 {object} curd.ReplyData[types.User] 返回用户信息
+// @Success 200 {object} curd.ReplyData[User] 返回用户信息
 // @Router /user/{id}/delete [get]
 func noopUserDelete() {}
 
@@ -111,7 +111,7 @@ func noopUserPassword() {}
 // @Param id path string true "用户ID"
 // @Accept json
 // @Produce json
-// @Success 200 {object} curd.ReplyData[types.User] 返回用户信息
+// @Success 200 {object} curd.ReplyData[User] 返回用户信息
 // @Router /user/{id}/enable [get]
 func noopUserEnable() {}
 
@@ -122,14 +122,14 @@ func noopUserEnable() {}
 // @Param id path string true "用户ID"
 // @Accept json
 // @Produce json
-// @Success 200 {object} curd.ReplyData[types.User] 返回用户信息
+// @Success 200 {object} curd.ReplyData[User] 返回用户信息
 // @Router /user/{id}/disable [get]
 func noopUserDisable() {}
 
 func init() {
 
 	api.RegisterUnAuthorized("POST", "user/login", login)
-	
+
 	api.RegisterUnAuthorized("GET", "user/auth", auth)
 
 	api.Register("GET", "user/logout", logout)
