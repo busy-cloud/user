@@ -148,7 +148,7 @@ func init() {
 
 	api.Register("GET", "user/:id", curd.ParseParamStringId, curd.ApiGet[User]())
 
-	api.Register("POST", "user/:id", curd.ParseParamStringId, curd.ApiUpdate[User]())
+	api.Register("POST", "user/:id", curd.ParseParamStringId, curd.ApiUpdate[User]("id", "name", "email", "cellphone", "admin", "disabled"))
 
 	api.Register("GET", "user/:id/delete", curd.ParseParamStringId, curd.ApiDeleteHook[User](nil, nil))
 
