@@ -162,16 +162,16 @@ func init() {
 func userMe(ctx *gin.Context) {
 	id := ctx.GetString("user")
 	var user User
-	has, err := db.Engine.ID(id).Get(&user)
+	has, err := db.Engine().ID(id).Get(&user)
 	if err != nil {
-		curd.Error(ctx, err)
+		api.Error(ctx, err)
 		return
 	}
 	if !has {
-		curd.Fail(ctx, "用户不存在")
+		api.Fail(ctx, "用户不存在")
 		return
 	}
-	curd.OK(ctx, &user)
+	api.OK(ctx, &user)
 }
 
 func userPassword(ctx *gin.Context) {
@@ -182,11 +182,11 @@ func userPassword(ctx *gin.Context) {
 	//p.Password = md5hash(pwd)
 	p.Password = pwd //前端已经加密过
 
-	_, err := db.Engine.Cols("password").Update(&p)
+	_, err := db.Engine().Cols("password").Update(&p)
 	if err != nil {
-		curd.Error(ctx, err)
+		api.Error(ctx, err)
 		return
 	}
 
-	curd.OK(ctx, nil)
+	api.OK(ctx, nil)
 }

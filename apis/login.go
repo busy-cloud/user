@@ -3,7 +3,7 @@ package user
 import (
 	"crypto/md5"
 	"encoding/hex"
-	"github.com/busy-cloud/boat/curd"
+	"github.com/busy-cloud/boat/api"
 	"github.com/busy-cloud/boat/db"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -27,14 +27,14 @@ func login(ctx *gin.Context) {
 
 	var obj loginObj
 	if err := ctx.ShouldBindJSON(&obj); err != nil {
-		curd.Error(ctx, err)
+		api.Error(ctx, err)
 		return
 	}
 
 	var user User
-	has, err := db.Engine.Where("id=?", obj.Username).Get(&user)
+	has, err := db.Engine().Where("id=?", obj.Username).Get(&user)
 	if err != nil {
-		curd.Error(ctx, err)
+		api.Error(ctx, err)
 		return
 	}
 
@@ -45,26 +45,26 @@ func login(ctx *gin.Context) {
 			user.Name = "管理员"
 			user.Admin = true
 
-			_, err = db.Engine.InsertOne(&user)
+			_, err = db.Engine().InsertOne(&user)
 			if err != nil {
-				curd.Error(ctx, err)
+				api.Error(ctx, err)
 				return
 			}
 		} else {
-			curd.Fail(ctx, "找不到用户")
+			api.Fail(ctx, "找不到用户")
 			return
 		}
 	}
 
 	if user.Disabled {
-		curd.Fail(ctx, "用户已禁用")
+		api.Fail(ctx, "用户已禁用")
 		return
 	}
 
 	var password Password
-	has, err = db.Engine.ID(user.Id).Get(&password)
+	has, err = db.Engine().ID(user.Id).Get(&password)
 	if err != nil {
-		curd.Error(ctx, err)
+		api.Error(ctx, err)
 		return
 	}
 
@@ -74,41 +74,41 @@ func login(ctx *gin.Context) {
 
 		password.Id = user.Id
 		password.Password = md5hash(dp)
-		_, err = db.Engine.InsertOne(&password)
+		_, err = db.Engine().InsertOne(&password)
 		if err != nil {
-			curd.Error(ctx, err)
+			api.Error(ctx, err)
 			return
 		}
 	}
 
 	if password.Password != obj.Password {
-		curd.Fail(ctx, "密码错误")
+		api.Fail(ctx, "密码错误")
 		return
 	}
 
-	//_, _ = db.Engine.InsertOne(&types.UserEvent{UserId: user.id, ModEvent: types.ModEvent{Type: "登录"}})
+	//_, _ = db.Engine().InsertOne(&types.UserEvent{UserId: user.id, ModEvent: types.ModEvent{Type: "登录"}})
 
 	//存入session
 	session.Set("user", user.Id)
 	_ = session.Save()
 
-	curd.OK(ctx, user)
+	api.OK(ctx, user)
 }
 
 func logout(ctx *gin.Context) {
 	session := sessions.Default(ctx)
 	u := session.Get("user")
 	if u == nil {
-		curd.Fail(ctx, "未登录")
+		api.Fail(ctx, "未登录")
 		return
 	}
 
 	//user := u.(int64)
-	//_, _ = db.Engine.InsertOne(&types.UserEvent{UserId: user, ModEvent: types.ModEvent{Type: "退出"}})
+	//_, _ = db.Engine().InsertOne(&types.UserEvent{UserId: user, ModEvent: types.ModEvent{Type: "退出"}})
 
 	session.Clear()
 	_ = session.Save()
-	curd.OK(ctx, nil)
+	api.OK(ctx, nil)
 }
 
 type passwordObj struct {
@@ -120,31 +120,31 @@ func password(ctx *gin.Context) {
 
 	var obj passwordObj
 	if err := ctx.ShouldBindJSON(&obj); err != nil {
-		curd.Error(ctx, err)
+		api.Error(ctx, err)
 		return
 	}
 
 	var pwd Password
-	has, err := db.Engine.ID(ctx.GetString("user")).Get(&pwd)
+	has, err := db.Engine().ID(ctx.GetString("user")).Get(&pwd)
 	if err != nil {
-		curd.Error(ctx, err)
+		api.Error(ctx, err)
 		return
 	}
 	if !has {
-		curd.Fail(ctx, "用户不存在")
+		api.Fail(ctx, "用户不存在")
 		return
 	}
 	if obj.Old != pwd.Password {
-		curd.Fail(ctx, "密码错误")
+		api.Fail(ctx, "密码错误")
 		return
 	}
 
 	pwd.Password = obj.New //前端已经加密过
-	_, err = db.Engine.ID(ctx.GetString("user")).Cols("password").Update(&pwd)
+	_, err = db.Engine().ID(ctx.GetString("user")).Cols("password").Update(&pwd)
 	if err != nil {
-		curd.Error(ctx, err)
+		api.Error(ctx, err)
 		return
 	}
 
-	curd.OK(ctx, nil)
+	api.OK(ctx, nil)
 }
