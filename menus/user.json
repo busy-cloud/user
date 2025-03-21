@@ -1,7 +1,7 @@
 {
   "name": "用户管理",
-  "icon": "link",
-  "index": 200,
+  "icon": "user",
+  "index": 700,
   "items": [
     {
       "name": "用户管理",
