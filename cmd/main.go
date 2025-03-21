@@ -4,13 +4,15 @@ import (
 	"github.com/busy-cloud/boat/boot"
 	"github.com/busy-cloud/boat/log"
 	"github.com/busy-cloud/boat/web"
-	_ "github.com/busy-cloud/user/boot"
+	_ "github.com/busy-cloud/user"
+	"github.com/spf13/viper"
 	"os"
 	"os/signal"
 	"syscall"
 )
 
 func main() {
+	viper.SetConfigName("user")
 
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)

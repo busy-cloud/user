@@ -1,0 +1,15 @@
+{
+  "name": "用户管理",
+  "icon": "link",
+  "index": 200,
+  "items": [
+    {
+      "name": "用户管理",
+      "url": "page/user/user"
+    },
+    {
+      "name": "用户日志",
+      "url": "page/user/log"
+    }
+  ]
+}

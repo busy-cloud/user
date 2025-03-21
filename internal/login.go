@@ -1,4 +1,4 @@
-package user
+package internal
 
 import (
 	"crypto/md5"
@@ -130,20 +130,27 @@ func password(ctx *gin.Context) {
 		api.Error(ctx, err)
 		return
 	}
-	if !has {
-		api.Fail(ctx, "用户不存在")
-		return
-	}
-	if obj.Old != pwd.Password {
-		api.Fail(ctx, "密码错误")
-		return
-	}
 
-	pwd.Password = obj.New //前端已经加密过
-	_, err = db.Engine().ID(ctx.GetString("user")).Cols("password").Update(&pwd)
-	if err != nil {
-		api.Error(ctx, err)
-		return
+	if !has {
+		pwd.Id = ctx.GetString("user")
+		pwd.Password = obj.New //前端已经加密过
+		_, err = db.Engine().InsertOne(&pwd)
+		if err != nil {
+			api.Error(ctx, err)
+			return
+		}
+	} else {
+		if obj.Old != pwd.Password {
+			api.Fail(ctx, "密码错误")
+			return
+		}
+
+		pwd.Password = md5hash(obj.New)
+		_, err = db.Engine().ID(ctx.GetString("user")).Cols("password").Update(&pwd)
+		if err != nil {
+			api.Error(ctx, err)
+			return
+		}
 	}
 
 	api.OK(ctx, nil)

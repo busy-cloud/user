@@ -1,4 +1,4 @@
-package user
+package internal
 
 import (
 	"github.com/busy-cloud/boat/db"
@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-	db.Register(new(User), new(Password))
+	db.Register(new(User), new(Password), new(UserLog))
 }
 
 // User 用户
@@ -24,4 +24,13 @@ type User struct {
 type Password struct {
 	Id       string `json:"id" xorm:"pk"`
 	Password string `json:"password"`
+}
+
+type UserLog struct {
+	Id      string    `json:"id"`
+	Name    string    `json:"name,omitempty"`
+	Action  string    `json:"action,omitempty"`
+	Client  string    `json:"client,omitempty"`
+	Ip      string    `json:"ip,omitempty"`
+	Created time.Time `json:"created,omitempty" xorm:"created"`
 }
