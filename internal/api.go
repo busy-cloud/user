@@ -76,7 +76,7 @@ func userPassword(ctx *gin.Context) {
 	p.Id = ctx.Param("id")
 	p.Password = md5hash(obj.Password)
 
-	_, _ = db.Engine().ID(p.Id).Delete(&p) //不管有没有都删掉
+	_, _ = db.Engine().ID(p.Id).Delete(new(Password)) //不管有没有都删掉
 	_, err := db.Engine().InsertOne(&p)
 	if err != nil {
 		api.Error(ctx, err)
