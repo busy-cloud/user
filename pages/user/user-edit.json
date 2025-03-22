@@ -35,7 +35,7 @@
       "type": "switch"
     }
   ],
-  "data_api": "user/:id",
+  "load_api": "user/:id",
   "submit_api": "user/:id",
   "submit_success": "this.navigate('/page/user/user')",
   "methods": {
