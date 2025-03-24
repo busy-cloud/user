@@ -8,10 +8,28 @@
       "type": "button",
       "action": {
         "type": "page",
-        "app": "user",
+        "app": "iot",
         "page": "user-create"
       }
+    },
+    {
+      "key": "keyword",
+      "type": "text",
+      "placeholder": "请输入关键字"
+    },
+    {
+      "type": "button",
+      "icon": "search",
+      "label": "搜索",
+      "action": {
+        "type": "script",
+        "script": "this.keyword=this.toolbar.value.keyword; this.search()"
+      }
     }
+  ],
+  "keywords": [
+    "id",
+    "name"
   ],
   "operators": [
     {
