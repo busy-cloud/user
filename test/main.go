@@ -1,11 +1,9 @@
 package main
 
 import (
-	_ "github.com/busy-cloud/boat"
+	"github.com/busy-cloud/boat/apps"
 	"github.com/busy-cloud/boat/boot"
 	"github.com/busy-cloud/boat/log"
-	"github.com/busy-cloud/boat/menu"
-	"github.com/busy-cloud/boat/page"
 	"github.com/busy-cloud/boat/web"
 	_ "github.com/busy-cloud/user/internal"
 	"github.com/spf13/viper"
@@ -16,9 +14,7 @@ import (
 
 func init() {
 	//测试
-	page.Dir("pages", "")
-
-	menu.Dir("menus", "")
+	apps.Pages().Dir("pages", "")
 }
 
 func main() {
