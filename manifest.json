@@ -14,7 +14,7 @@
   "menus": [
     {
       "name": "用户管理",
-      "nz-icon": "user",
+      "nz_icon": "user",
       "index": 700,
       "items": [
         {
