@@ -1,12 +1,20 @@
 {
   "id": "user",
+  "icon": "user.png",
   "name": "用户",
   "description": "简单用户系统",
   "version": "v0.0.1",
+  "shortcuts": [
+    {
+      "name": "用户管理",
+      "url": "page/user/user",
+      "icon": "user.png"
+    }
+  ],
   "menus": [
     {
       "name": "用户管理",
-      "icon": "user",
+      "nz-icon": "user",
       "index": 700,
       "items": [
         {
