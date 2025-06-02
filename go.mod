@@ -3,7 +3,7 @@ module github.com/busy-cloud/user
 go 1.23.0
 
 require (
-	github.com/busy-cloud/boat v0.4.5
+	github.com/busy-cloud/boat v0.4.10
 	github.com/gin-contrib/sessions v1.0.4
 	github.com/gin-gonic/gin v1.10.1
 	github.com/spf13/viper v1.20.1
