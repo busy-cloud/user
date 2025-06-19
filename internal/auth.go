@@ -8,11 +8,14 @@ import (
 )
 
 func auth(ctx *gin.Context) {
-	username := ctx.Query("username")
-	password := ctx.Query("password")
+	var u loginObj
+	if err := ctx.ShouldBindJSON(&u); err != nil {
+		api.Error(ctx, err)
+		return
+	}
 
 	var user User
-	has, err := db.Engine().Where("id=?", username).Get(&user)
+	has, err := db.Engine().Where("id=?", u.Username).Get(&user)
 	if err != nil {
 		api.Error(ctx, err)
 		return
@@ -41,7 +44,7 @@ func auth(ctx *gin.Context) {
 		obj.Password = md5hash(dp)
 	}
 
-	if obj.Password != password {
+	if obj.Password != u.Password {
 		api.Fail(ctx, "密码错误")
 		return
 	}
