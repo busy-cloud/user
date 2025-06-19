@@ -12,7 +12,7 @@ func init() {
 	api.RegisterUnAuthorized("POST", "user/login", login)
 	//api.RegisterUnAuthorized("POST", "login", login)
 
-	api.RegisterUnAuthorized("GET", "user/auth", auth)
+	api.RegisterUnAuthorized("POST", "user/auth", auth)
 	//api.RegisterUnAuthorized("GET", "auth", auth)
 
 	api.Register("GET", "user/logout", logout)
