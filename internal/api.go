@@ -43,6 +43,16 @@ func init() {
 	api.Register("GET", "user/:id/enable", curd.ApiDisableHook[User](false, nil, nil))
 
 	api.Register("GET", "user/:id/disable", curd.ApiDisableHook[User](true, nil, nil))
+
+	api.Register("POST", "user/role/count", curd.ApiCount[Role]())
+	api.Register("POST", "user/role/search", curd.ApiSearch[Role]())
+	api.Register("GET", "user/role/list", curd.ApiList[Role]())
+	api.Register("POST", "user/role/create", curd.ApiCreateHook[Role](curd.GenerateID[Role](), nil))
+	api.Register("GET", "user/role/:id", curd.ApiGet[Role]())
+	api.Register("POST", "user/role/:id", curd.ApiUpdate[Role]("id", "name", "privileges", "disabled"))
+	api.Register("GET", "user/role/:id/delete", curd.ApiDeleteHook[Role](nil, nil))
+	api.Register("GET", "user/role/:id/enable", curd.ApiDisableHook[Role](false, nil, nil))
+	api.Register("GET", "user/role/:id/disable", curd.ApiDisableHook[Role](true, nil, nil))
 }
 
 func userMe(ctx *gin.Context) {
