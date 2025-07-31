@@ -1,13 +1,8 @@
 package internal
 
 import (
-	"github.com/busy-cloud/boat/db"
 	"time"
 )
-
-func init() {
-	db.Register(new(User), new(Password), new(UserLog))
-}
 
 // User 用户
 type User struct {

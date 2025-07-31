@@ -23,7 +23,7 @@ func init() {
 	api.Register("GET", "me", userMe)
 	//api.Register("GET", "me", userMe)
 
-	api.Register("POST", "user/:id/password", userPassword)
+	api.Register("POST", "password/:id", userPassword)
 }
 
 func userMe(ctx *gin.Context) {
