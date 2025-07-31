@@ -15,6 +15,9 @@ var assets embed.FS
 //go:embed pages
 var pages embed.FS
 
+//go:embed tables
+var tables embed.FS
+
 //go:embed manifest.json
 var manifest []byte
 
@@ -30,4 +33,5 @@ func init() {
 	//注册资源
 	a.AssetsFS = store.PrefixFS(&assets, "assets")
 	a.PagesFS = store.PrefixFS(&pages, "pages")
+	a.TablesFS = store.PrefixFS(&tables, "tables")
 }

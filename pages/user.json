@@ -55,7 +55,7 @@
       "confirm": "确认删除？",
       "action": {
         "type": "script",
-        "script": "this.request.get('user/'+data.id+'/delete').subscribe(res=>{this.load()})"
+        "script": "this.request.get('table/user/'+data.id+'/delete').subscribe(res=>{this.load()})"
       }
     }
   ],
@@ -92,5 +92,5 @@
       "type": "date"
     }
   ],
-  "search_api": "user/search"
+  "search_api": "table/user/search"
 }

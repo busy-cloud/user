@@ -35,7 +35,7 @@
       "type": "switch"
     }
   ],
-  "submit_api": "user/create",
+  "submit_api": "table/user/create",
   "submit_success": "this.navigate('/page/user/user')",
   "methods": {
    }

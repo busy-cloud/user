@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"github.com/busy-cloud/boat/apps"
 	"github.com/busy-cloud/boat/boot"
 	"github.com/busy-cloud/boat/log"
@@ -13,8 +14,18 @@ import (
 )
 
 func init() {
-	//测试
-	apps.Pages().Dir("pages", "")
+	manifest, err := os.ReadFile("manifest.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	//注册为内部插件
+	var a apps.App
+	err = json.Unmarshal(manifest, &a)
+	if err != nil {
+		log.Fatal(err)
+	}
+	apps.Register(&a)
 }
 
 func main() {

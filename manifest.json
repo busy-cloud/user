@@ -28,5 +28,7 @@
       ]
     }
   ],
-  "pages": "pages"
+  "assets": "assets",
+  "pages": "pages",
+  "tables": "tables"
 }

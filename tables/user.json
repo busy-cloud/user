@@ -1,0 +1,49 @@
+{
+  "name": "user",
+  "comment": "用户",
+  "fields": [
+    {
+      "name": "id",
+      "comment": "ID",
+      "type": "string",
+      "length": 50,
+      "primary_key": true
+    },
+    {
+      "name": "name",
+      "comment": "用户名",
+      "type": "string",
+      "length": 50
+    },
+    {
+      "name": "email",
+      "comment": "邮箱",
+      "type": "string",
+      "length": 256
+    },
+    {
+      "name": "cellphone",
+      "comment": "手机号",
+      "type": "string",
+      "length": 32
+    },
+    {
+      "name": "admin",
+      "comment": "管理员",
+      "type": "bool",
+      "default": false
+    },
+    {
+      "name": "disabled",
+      "comment": "禁用",
+      "type": "bool",
+      "default": false
+    },
+    {
+      "name": "created",
+      "comment": "创建时间",
+      "type": "datetime",
+      "created": true
+    }
+  ]
+}

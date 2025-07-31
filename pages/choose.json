@@ -45,5 +45,5 @@
       "label": "邮箱"
     }
   ],
-  "search_api": "user/search"
+  "search_api": "table/user/search"
 }

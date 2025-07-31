@@ -28,5 +28,5 @@
       "type": "date"
     }
   ],
-  "search_api": "user/log/search"
+  "search_api": "table/user_log/search"
 }

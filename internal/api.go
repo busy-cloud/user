@@ -2,7 +2,6 @@ package internal
 
 import (
 	"github.com/busy-cloud/boat/api"
-	"github.com/busy-cloud/boat/curd"
 	"github.com/busy-cloud/boat/db"
 	"github.com/gin-gonic/gin"
 )
@@ -24,26 +23,7 @@ func init() {
 	api.Register("GET", "me", userMe)
 	//api.Register("GET", "me", userMe)
 
-	api.Register("POST", "user/count", curd.ApiCount[User]())
-
-	api.Register("POST", "user/search", curd.ApiSearch[User]())
-
-	api.Register("GET", "user/list", curd.ApiList[User]())
-
-	api.Register("POST", "user/create", curd.ApiCreateHook[User](curd.GenerateID[User](), nil))
-
-	api.Register("GET", "user/:id", curd.ApiGet[User]())
-
-	api.Register("POST", "user/:id", curd.ApiUpdate[User]("id", "name", "email", "cellphone", "admin", "disabled"))
-
-	api.Register("GET", "user/:id/delete", curd.ApiDeleteHook[User](nil, nil))
-
 	api.Register("POST", "user/:id/password", userPassword)
-
-	api.Register("GET", "user/:id/enable", curd.ApiDisableHook[User](false, nil, nil))
-
-	api.Register("GET", "user/:id/disable", curd.ApiDisableHook[User](true, nil, nil))
-
 }
 
 func userMe(ctx *gin.Context) {
