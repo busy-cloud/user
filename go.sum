@@ -4,8 +4,8 @@ gitea.com/xorm/sqlfiddle v0.0.0-20180821085327-62ce714f951a h1:lSA0F4e9A2NcQSqGq
 gitea.com/xorm/sqlfiddle v0.0.0-20180821085327-62ce714f951a/go.mod h1:EXuID2Zs0pAQhH8yz+DNjUbjppKQzKFAn28TMYPB6IU=
 github.com/Masterminds/semver/v3 v3.2.1 h1:RN9w6+7QoMeJVGyfmbcgs28Br8cvmnucEXnY0rYXWg0=
 github.com/Masterminds/semver/v3 v3.2.1/go.mod h1:qvl/7zhW3nngYb5+80sSMF+FG2BjYrf8m9wsX0PNOMQ=
-github.com/busy-cloud/boat v0.6.0 h1:JWxpV+bjYHpetTQ4hHDCtXl2lwBww0hEoqoZP8Tmzk4=
-github.com/busy-cloud/boat v0.6.0/go.mod h1:LQCgy2Vb3RgSk2+3q5m9Plhfu92ACJsnL0AihRTxyUM=
+github.com/busy-cloud/boat v0.6.3 h1:X9g2FZkY49pbag8AWIr/uNZFlW+Y0ksC2VDEXgAd3ck=
+github.com/busy-cloud/boat v0.6.3/go.mod h1:xmo9Ah2t6CQZ2hVCcSrj0vMr8XhCb8dkJ2rN0WaZmuY=
 github.com/bytedance/sonic v1.13.2 h1:8/H1FempDZqC4VqjptGo14QQlJx8VdZJegxs6wwfqpQ=
 github.com/bytedance/sonic v1.13.2/go.mod h1:o68xyaF9u2gvVBuGHPlUVCy+ZfmNNO5ETf1+KgkJhz4=
 github.com/bytedance/sonic/loader v0.1.1/go.mod h1:ncP89zfokxS5LZrJxl5z0UJcsk4M4yY2JpfqGeCtNLU=

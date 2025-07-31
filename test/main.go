@@ -5,6 +5,7 @@ import (
 	"github.com/busy-cloud/boat/apps"
 	"github.com/busy-cloud/boat/boot"
 	"github.com/busy-cloud/boat/log"
+	"github.com/busy-cloud/boat/store"
 	"github.com/busy-cloud/boat/web"
 	_ "github.com/busy-cloud/user/internal"
 	"github.com/spf13/viper"
@@ -25,6 +26,11 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	a.AssetsFS = store.Dir("assets")
+	a.PagesFS = store.Dir("pages")
+	a.TablesFS = store.Dir("tables")
+
 	apps.Register(&a)
 }
 
