@@ -22,10 +22,6 @@
           "url": "page/user/user"
         },
         {
-          "name": "角色管理",
-          "url": "page/user/role"
-        },
-        {
           "name": "用户日志",
           "url": "page/user/log"
         }

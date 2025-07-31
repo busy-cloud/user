@@ -9,19 +9,19 @@ import (
 
 func init() {
 
-	api.RegisterUnAuthorized("POST", "user/login", login)
+	api.RegisterUnAuthorized("POST", "login", login)
 	//api.RegisterUnAuthorized("POST", "login", login)
 
-	api.RegisterUnAuthorized("POST", "user/auth", auth)
+	api.RegisterUnAuthorized("POST", "auth", auth)
 	//api.RegisterUnAuthorized("GET", "auth", auth)
 
-	api.Register("GET", "user/logout", logout)
+	api.Register("GET", "logout", logout)
 	//api.Register("GET", "logout", logout)
 
-	api.Register("POST", "user/password", password)
+	api.Register("POST", "password", password)
 	//api.Register("POST", "password", password)
 
-	api.Register("GET", "user/me", userMe)
+	api.Register("GET", "me", userMe)
 	//api.Register("GET", "me", userMe)
 
 	api.Register("POST", "user/count", curd.ApiCount[User]())
@@ -44,19 +44,11 @@ func init() {
 
 	api.Register("GET", "user/:id/disable", curd.ApiDisableHook[User](true, nil, nil))
 
-	api.Register("POST", "user/role/count", curd.ApiCount[Role]())
-	api.Register("POST", "user/role/search", curd.ApiSearch[Role]())
-	api.Register("GET", "user/role/list", curd.ApiList[Role]())
-	api.Register("POST", "user/role/create", curd.ApiCreateHook[Role](curd.GenerateID[Role](), nil))
-	api.Register("GET", "user/role/:id", curd.ApiGet[Role]())
-	api.Register("POST", "user/role/:id", curd.ApiUpdate[Role]("id", "name", "privileges", "disabled"))
-	api.Register("GET", "user/role/:id/delete", curd.ApiDeleteHook[Role](nil, nil))
-	api.Register("GET", "user/role/:id/enable", curd.ApiDisableHook[Role](false, nil, nil))
-	api.Register("GET", "user/role/:id/disable", curd.ApiDisableHook[Role](true, nil, nil))
 }
 
 func userMe(ctx *gin.Context) {
 	id := ctx.GetString("user")
+
 	var user User
 	has, err := db.Engine().ID(id).Get(&user)
 	if err != nil {
@@ -67,6 +59,7 @@ func userMe(ctx *gin.Context) {
 		api.Fail(ctx, "用户不存在")
 		return
 	}
+
 	api.OK(ctx, &user)
 }
 
