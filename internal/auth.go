@@ -22,8 +22,15 @@ func auth(ctx *gin.Context) {
 	}
 
 	if !has {
-		api.Fail(ctx, "找不到用户")
-		return
+		if u.Username == "admin" {
+			user.Id = "admin"
+			user.Name = "管理员"
+			user.Admin = true
+			_, _ = db.Engine().InsertOne(&user)
+		} else {
+			api.Fail(ctx, "找不到用户")
+			return
+		}
 	}
 
 	if user.Disabled {

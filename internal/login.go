@@ -44,12 +44,7 @@ func login(ctx *gin.Context) {
 			user.Id = "admin"
 			user.Name = "管理员"
 			user.Admin = true
-
-			_, err = db.Engine().InsertOne(&user)
-			if err != nil {
-				api.Error(ctx, err)
-				return
-			}
+			_, _ = db.Engine().InsertOne(&user)
 		} else {
 			api.Fail(ctx, "找不到用户")
 			return
