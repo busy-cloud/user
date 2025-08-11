@@ -35,8 +35,8 @@
       "type": "switch"
     }
   ],
-  "load_api": "table/user/:id",
-  "submit_api": "table/user/:id",
+  "load_api": "table/user/detail/:id",
+  "submit_api": "table/user/update/:id",
   "submit_success": "this.navigate('/page/user/user')",
   "methods": {
   }
