@@ -1,8 +1,6 @@
 package internal
 
-import (
-	"time"
-)
+import "time"
 
 // User 用户
 type User struct {
