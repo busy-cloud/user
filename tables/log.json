@@ -6,7 +6,7 @@
       "name": "id",
       "comment": "ID",
       "type": "int64",
-      "primary_key": true,
+      "primary": true,
       "increment": true
     },
     {
