@@ -16,6 +16,12 @@
       "length": 50
     },
     {
+      "name": "avatar",
+      "comment": "头像",
+      "type": "string",
+      "length": 256
+    },
+    {
       "name": "email",
       "comment": "邮箱",
       "type": "string",

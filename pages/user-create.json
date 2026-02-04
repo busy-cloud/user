@@ -15,6 +15,11 @@
       "required": true
     },
     {
+      "key": "avatar",
+      "label": "头像",
+      "type": "text"
+    },
+    {
       "key": "email",
       "label": "邮箱",
       "type": "text"
